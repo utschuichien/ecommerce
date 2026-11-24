@@ -1,3 +1,11 @@
+jest.mock('@nestjs/jwt', () => ({
+  JwtService: class {
+    sign = jest.fn();
+    verify = jest.fn();
+    verifyAsync = jest.fn();
+  },
+}));
+
 import { ForbiddenException, NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { RolesGuard } from './roles.guard';

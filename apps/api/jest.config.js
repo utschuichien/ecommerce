@@ -12,6 +12,6 @@ module.exports = {
     '^@/(.*)$': '<rootDir>/$1',
   },
   transformIgnorePatterns: [
-  "node_modules/.pnpm/(?!@nestjs\\+passport)"
-],
+    'node_modules/(?!(\\.pnpm/)?(@nestjs[+/](passport|jwt|schedule)|\\.pnpm))',
+  ],
 };
