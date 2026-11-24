@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400" width="100%" height="100%" fill="none">
+  <defs>
+    <linearGradient id="bannerBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#064E3B"/>
+      <stop offset="45%" stop-color="#047857"/>
+      <stop offset="85%" stop-color="#0D9488"/>
+      <stop offset="100%" stop-color="#0F766E"/>
+    </linearGradient>
+    <linearGradient id="meshSphere" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#34D399" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#059669" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="goldGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FBBF24" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#D97706" stop-opacity="0"/>
+    </linearGradient>
+    <pattern id="bannerGrid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#FFFFFF" stroke-width="1" stroke-opacity="0.05"/>
+    </pattern>
+  </defs>
+
+  <!-- Background Base Gradient -->
+  <rect width="1200" height="400" fill="url(#bannerBg)"/>
+
+  <!-- Geometric Grid Pattern Overlay -->
+  <rect width="1200" height="400" fill="url(#bannerGrid)"/>
+
+  <!-- Radial Glow Spheres -->
+  <circle cx="150" cy="80" r="280" fill="url(#meshSphere)"/>
+  <circle cx="1050" cy="320" r="320" fill="url(#meshSphere)"/>
+  <circle cx="600" cy="200" r="220" fill="url(#goldGlow)"/>
+
+  <!-- Abstract Dynamic Waves and Light Lines -->
+  <path d="M-50 320C200 240 450 380 750 280C1000 200 1150 260 1250 220" stroke="#FFFFFF" stroke-width="1.5" stroke-opacity="0.12" fill="none"/>
+  <path d="M-50 260C220 180 480 320 800 220C1040 140 1160 200 1250 160" stroke="#34D399" stroke-width="2" stroke-opacity="0.2" fill="none"/>
+
+  <!-- Floating Isometric Commerce Shapes (subtle background embellishments) -->
+  <g transform="translate(960, 70)" opacity="0.45">
+    <!-- Isometric Cube / Parcel -->
+    <path d="M70 20L120 45L70 70L20 45L70 20Z" fill="#34D399"/>
+    <path d="M20 45L70 70V125L20 100V45Z" fill="#059669"/>
+    <path d="M120 45L70 70V125L120 100V45Z" fill="#047857"/>
+  </g>
+  <g transform="translate(140, 240)" opacity="0.3">
+    <!-- Star Sparkle -->
+    <path d="M40 0L48 28L76 36L48 44L40 72L32 44L4 36L32 28Z" fill="#FBBF24"/>
+  </g>
+  <g transform="translate(820, 260)" opacity="0.3">
+    <!-- Star Sparkle small -->
+    <path d="M25 0L30 18L48 23L30 28L25 46L20 28L2 23L20 18Z" fill="#FFFFFF"/>
+  </g>
+
+  <!-- Centered / Right Brand Accent -->
+  <g transform="translate(80, 160)">
+    <!-- Pill Badge -->
+    <rect x="0" y="0" width="186" height="32" rx="16" fill="#FFFFFF" fill-opacity="0.12" stroke="#FFFFFF" stroke-width="1" stroke-opacity="0.25"/>
+    <circle cx="16" cy="16" r="5" fill="#34D399"/>
+    <text x="32" y="21" font-family="system-ui, -apple-system, BlinkMacSystemFont, sans-serif" font-weight="700" font-size="12" fill="#E0F2FE" letter-spacing="1">OFFICIAL STORE</text>
+  </g>
+</svg>

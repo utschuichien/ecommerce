@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="100%" height="100%" fill="none">
+  <defs>
+    <linearGradient id="sellerBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#059669"/>
+      <stop offset="100%" stop-color="#0D9488"/>
+    </linearGradient>
+    <linearGradient id="sellerRoof1" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#F3F4F6"/>
+    </linearGradient>
+    <linearGradient id="sellerRoof2" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#F59E0B"/>
+      <stop offset="100%" stop-color="#D97706"/>
+    </linearGradient>
+    <filter id="sellerShadow" x="-10%" y="-10%" width="120%" height="120%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#047857" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+
+  <!-- Background Circle with Emerald Gradient -->
+  <circle cx="128" cy="128" r="128" fill="url(#sellerBg)"/>
+
+  <!-- Subtle Inner Ring -->
+  <circle cx="128" cy="128" r="124" stroke="#FFFFFF" stroke-width="4" stroke-opacity="0.25"/>
+
+  <!-- Storefront Illustration -->
+  <g filter="url(#sellerShadow)">
+    <!-- Store Base Building -->
+    <rect x="58" y="118" width="140" height="92" rx="10" fill="#FFFFFF"/>
+
+    <!-- Door Frame & Door -->
+    <rect x="108" y="146" width="40" height="64" rx="4" fill="#F0FDF4" stroke="#10B981" stroke-width="2.5"/>
+    <circle cx="140" cy="178" r="3" fill="#059669"/>
+
+    <!-- Display Windows -->
+    <rect x="70" y="146" width="28" height="38" rx="4" fill="#E0F2FE" stroke="#38BDF8" stroke-width="2"/>
+    <path d="M72 154L94 176" stroke="#BAE6FD" stroke-width="2" stroke-linecap="round"/>
+
+    <rect x="158" y="146" width="28" height="38" rx="4" fill="#E0F2FE" stroke="#38BDF8" stroke-width="2"/>
+    <path d="M160 154L182 176" stroke="#BAE6FD" stroke-width="2" stroke-linecap="round"/>
+
+    <!-- Awning Striped Roof -->
+    <g>
+      <!-- Stripe 1 -->
+      <path d="M50 102C50 96 54 92 60 92H76V118C76 123.5 70.5 128 65 128C59.5 128 50 123.5 50 118V102Z" fill="url(#sellerRoof2)"/>
+      <!-- Stripe 2 -->
+      <path d="M76 92H102V118C102 123.5 96.5 128 89 128C81.5 128 76 123.5 76 118V92Z" fill="url(#sellerRoof1)"/>
+      <!-- Stripe 3 -->
+      <path d="M102 92H128V118C128 123.5 122.5 128 115 128C107.5 128 102 123.5 102 118V92Z" fill="url(#sellerRoof2)"/>
+      <!-- Stripe 4 -->
+      <path d="M128 92H154V118C154 123.5 148.5 128 141 128C133.5 128 128 123.5 128 118V92Z" fill="url(#sellerRoof1)"/>
+      <!-- Stripe 5 -->
+      <path d="M154 92H180V118C180 123.5 174.5 128 167 128C159.5 128 154 123.5 154 118V92Z" fill="url(#sellerRoof2)"/>
+      <!-- Stripe 6 -->
+      <path d="M180 92H196C202 92 206 96 206 102V118C206 123.5 196.5 128 191 128C185.5 128 180 123.5 180 118V92Z" fill="url(#sellerRoof1)"/>
+    </g>
+
+    <!-- Store Signboard "SHOP" -->
+    <rect x="94" y="66" width="68" height="24" rx="6" fill="#FFFFFF" stroke="#F59E0B" stroke-width="2.5"/>
+    <text x="128" y="82.5" font-family="system-ui, -apple-system, BlinkMacSystemFont, sans-serif" font-weight="800" font-size="11" fill="#065F46" text-anchor="middle" letter-spacing="1.5">SHOP</text>
+  </g>
+
+  <!-- Verified Seller Star Badge -->
+  <g transform="translate(182, 182)">
+    <circle cx="20" cy="20" r="20" fill="#F59E0B" stroke="#FFFFFF" stroke-width="3"/>
+    <path d="M20 10L23.09 16.26L30 17.27L25 22.14L26.18 29.02L20 25.77L13.82 29.02L15 22.14L10 17.27L16.91 16.26L20 10Z" fill="#FFFFFF"/>
+  </g>
+</svg>

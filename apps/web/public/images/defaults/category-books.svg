@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="100%" height="100%" fill="none">
+  <defs>
+    <linearGradient id="bookBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F5F3FF"/>
+      <stop offset="100%" stop-color="#EDE9FE"/>
+    </linearGradient>
+    <linearGradient id="bookCover" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7C3AED"/>
+      <stop offset="100%" stop-color="#6D28D9"/>
+    </linearGradient>
+    <linearGradient id="pagesGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#F3F4F6"/>
+    </linearGradient>
+    <filter id="bookShadow" x="-10%" y="-10%" width="120%" height="120%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#4C1D95" flood-opacity="0.18"/>
+    </filter>
+  </defs>
+
+  <rect x="8" y="8" width="240" height="240" rx="36" fill="url(#bookBg)" stroke="#DDD6FE" stroke-width="3"/>
+
+  <g filter="url(#bookShadow)">
+    <!-- Open Book Pages Left & Right -->
+    <path d="M128 88C110 80 82 78 52 82C48 83 44 87 44 92V178C44 183 48 187 54 186C82 182 110 184 128 194C146 184 174 182 202 186C208 187 212 183 212 178V92C212 87 208 83 204 82C174 78 146 80 128 88Z" fill="url(#bookCover)"/>
+
+    <path d="M128 92C112 85 86 83 56 86V172C84 169 110 171 128 180V92Z" fill="url(#pagesGrad)"/>
+    <path d="M128 92C144 85 170 83 200 86V172C172 169 146 171 128 180V92Z" fill="url(#pagesGrad)"/>
+
+    <!-- Book Spine Center Fold -->
+    <path d="M128 90V182" stroke="#7C3AED" stroke-width="3.5" stroke-linecap="round"/>
+
+    <!-- Text Lines on Left Page -->
+    <path d="M68 112H112M68 126H106M68 140H112M68 154H96" stroke="#94A3B8" stroke-width="2.5" stroke-linecap="round"/>
+
+    <!-- Text Lines on Right Page -->
+    <path d="M144 112H188M144 126H182M144 140H188M144 154H172" stroke="#94A3B8" stroke-width="2.5" stroke-linecap="round"/>
+
+    <!-- Red Ribbon Bookmark -->
+    <path d="M128 90V136L135 128L142 136V90H128Z" fill="#EF4444"/>
+  </g>
+</svg>

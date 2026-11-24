@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="100%" height="100%" fill="none">
+  <defs>
+    <linearGradient id="beautyBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FDF2F8"/>
+      <stop offset="100%" stop-color="#FCE7F3"/>
+    </linearGradient>
+    <linearGradient id="bottleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#EC4899"/>
+      <stop offset="100%" stop-color="#BE185D"/>
+    </linearGradient>
+    <linearGradient id="perfumeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#A855F7"/>
+      <stop offset="100%" stop-color="#7E22CE"/>
+    </linearGradient>
+    <filter id="beautyShadow" x="-10%" y="-10%" width="120%" height="120%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#831843" flood-opacity="0.16"/>
+    </filter>
+  </defs>
+
+  <rect x="8" y="8" width="240" height="240" rx="36" fill="url(#beautyBg)" stroke="#FBCFE8" stroke-width="3"/>
+
+  <g filter="url(#beautyShadow)">
+    <!-- Dropper Bottle (Left) -->
+    <rect x="62" y="112" width="56" height="88" rx="12" fill="url(#perfumeGrad)"/>
+    <!-- Bottle neck and dropper -->
+    <rect x="78" y="90" width="24" height="22" rx="4" fill="#E9D5FF"/>
+    <path d="M84 90C84 80 88 72 90 70C92 72 96 80 96 90H84Z" fill="#6B21A8"/>
+    <!-- Dropper Highlight -->
+    <rect x="68" y="122" width="6" height="68" rx="3" fill="#FFFFFF" fill-opacity="0.4"/>
+
+    <!-- Cosmetic Serum / Cream Jar (Right) -->
+    <rect x="130" y="132" width="68" height="68" rx="16" fill="url(#bottleGrad)"/>
+    <!-- Jar Gold Cap -->
+    <rect x="126" y="116" width="76" height="20" rx="6" fill="#FBBF24" stroke="#D97706" stroke-width="1.5"/>
+    <rect x="136" y="142" width="56" height="48" rx="10" fill="#FFFFFF" fill-opacity="0.25"/>
+
+    <!-- Sparkles -->
+    <path d="M124 64L127 76L139 79L127 82L124 94L121 82L109 79L121 76L124 64Z" fill="#F43F5E"/>
+    <path d="M182 78L184 86L192 88L184 90L182 98L180 90L172 88L180 86L182 78Z" fill="#EC4899"/>
+  </g>
+</svg>

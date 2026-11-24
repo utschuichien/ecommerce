@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="100%" height="100%" fill="none">
+  <defs>
+    <linearGradient id="catBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F8FAFC"/>
+      <stop offset="100%" stop-color="#EEF2F6"/>
+    </linearGradient>
+    <linearGradient id="boxGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10B981"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+    <linearGradient id="boxGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38BDF8"/>
+      <stop offset="100%" stop-color="#0284C7"/>
+    </linearGradient>
+    <linearGradient id="boxGrad3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#818CF8"/>
+      <stop offset="100%" stop-color="#4F46E5"/>
+    </linearGradient>
+    <filter id="catShadow" x="-10%" y="-10%" width="120%" height="120%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#0F172A" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+
+  <!-- Rounded Squircle Container -->
+  <rect x="8" y="8" width="240" height="240" rx="36" fill="url(#catBg)" stroke="#E2E8F0" stroke-width="3"/>
+
+  <!-- Category Grid / Layered Elements Illustration -->
+  <g filter="url(#catShadow)">
+    <!-- Card 1: Top Right (Blue) -->
+    <rect x="134" y="56" width="66" height="66" rx="16" fill="url(#boxGrad2)"/>
+    <circle cx="167" cy="89" r="14" fill="#FFFFFF" fill-opacity="0.3"/>
+    <path d="M161 89H173M167 83V95" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round"/>
+
+    <!-- Card 2: Bottom Left (Purple) -->
+    <rect x="56" y="134" width="66" height="66" rx="16" fill="url(#boxGrad3)"/>
+    <path d="M75 167L84 176L103 157" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <!-- Card 3: Main Active Emerald Card (Bottom Right / Center) -->
+    <rect x="84" y="84" width="88" height="88" rx="20" fill="url(#boxGrad1)"/>
+    <rect x="84" y="84" width="88" height="88" rx="20" stroke="#FFFFFF" stroke-width="3" stroke-opacity="0.4"/>
+
+    <!-- Inside Main Card: Category Tag / Grid Icon -->
+    <g transform="translate(108, 108)">
+      <!-- 4 mini squares grid inside -->
+      <rect x="0" y="0" width="16" height="16" rx="4" fill="#FFFFFF"/>
+      <rect x="24" y="0" width="16" height="16" rx="4" fill="#FFFFFF" fill-opacity="0.75"/>
+      <rect x="0" y="24" width="16" height="16" rx="4" fill="#FFFFFF" fill-opacity="0.75"/>
+      <rect x="24" y="24" width="16" height="16" rx="4" fill="#FFFFFF"/>
+    </g>
+  </g>
+
+  <!-- Sparkle Accent Top Left -->
+  <g transform="translate(62, 60)">
+    <path d="M12 0L14.5 8.5L23 11L14.5 13.5L12 22L9.5 13.5L1 11L9.5 8.5Z" fill="#F59E0B"/>
+  </g>
+</svg>

@@ -1,0 +1,45 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Builds & Outputs
+dist/
+.next/
+out/
+build/
+
+# Environment Variables & Secrets (Bảo vệ thông tin bảo mật)
+.env
+.env.*
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+apps/*/.env
+apps/*/.env.*
+apps/*/.env.local
+
+# Giữ lại các tệp mẫu biến môi trường
+!.env.example
+!.env.docker.example
+!apps/*/.env.example
+
+# Logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS & Editor
+.DS_Store
+Thumbs.db
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+.idea/
+.gemini/
+
+# Testing & Coverage
+coverage/
+.turbo/

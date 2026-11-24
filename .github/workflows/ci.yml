@@ -1,0 +1,127 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches: [main, master, develop]
+  pull_request:
+    branches: [main, master, develop]
+
+jobs:
+  # 1. Kiểm tra Typecheck và Cú pháp toàn dự án
+  typecheck:
+    name: Typecheck & Prisma Generate
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 12.15.0
+
+      - name: Setup Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'pnpm'
+
+      - name: Install Dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Generate Prisma Client
+        run: pnpm --filter api prisma generate
+
+      - name: Typecheck Backend (NestJS)
+        run: pnpm --filter api exec tsc --noEmit
+
+      - name: Typecheck Frontend (Next.js)
+        run: pnpm --filter web exec tsc --noEmit
+
+  # 2. Chạy toàn bộ Tests Backend (Jest)
+  test-backend:
+    name: Backend Tests (NestJS)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 12.15.0
+
+      - name: Setup Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'pnpm'
+
+      - name: Install Dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Generate Prisma Client
+        run: pnpm --filter api prisma generate
+
+      - name: Run Backend Unit & Integration Tests
+        run: pnpm --filter api test
+
+  # 3. Chạy toàn bộ Tests Frontend (Vitest & Testing Library)
+  test-frontend:
+    name: Frontend Tests (Next.js / Vitest)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 12.15.0
+
+      - name: Setup Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'pnpm'
+
+      - name: Install Dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Run Frontend Tests
+        run: pnpm --filter web test
+
+  # 4. Kiểm tra Biên dịch đóng gói (Build)
+  build:
+    name: Production Build Verification
+    needs: [typecheck, test-backend, test-frontend]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 12.15.0
+
+      - name: Setup Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'pnpm'
+
+      - name: Install Dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Generate Prisma Client
+        run: pnpm --filter api prisma generate
+
+      - name: Build Backend (NestJS)
+        run: pnpm build:api
+
+      - name: Build Frontend (Next.js Standalone)
+        env:
+          NEXT_PUBLIC_API_URL: http://localhost:3001/api/v1
+          NEXT_PUBLIC_SOCKET_URL: http://localhost:3001
+        run: pnpm build:web
