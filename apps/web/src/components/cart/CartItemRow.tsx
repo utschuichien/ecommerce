@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { Minus, Plus, Trash2 } from 'lucide-react';
 import { CartItem } from './cart-types';
 import { formatVND } from '../../lib/api-client';
+import { ProductImage } from '@/components/common/ProductImage';
 import { Checkbox } from '../ui/checkbox';
 
 interface CartItemRowProps {
@@ -39,7 +40,7 @@ export function CartItemRow({
           href={`/products/${item.productSlug || item.productId}`}
           className="w-16 h-16 sm:w-18 sm:h-18 rounded-xl bg-gray-50/80 p-1.5 shrink-0 flex items-center justify-center overflow-hidden hover:opacity-95 transition"
         >
-          <img
+          <ProductImage
             src={item.image}
             alt={item.name}
             className="max-h-full max-w-full object-contain"

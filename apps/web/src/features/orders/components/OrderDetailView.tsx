@@ -23,6 +23,7 @@ import { CancelOrderModal } from './CancelOrderModal';
 import { ReviewModal } from '@/components/profile/ReviewModal';
 import { formatVND } from '@/lib/api-client';
 import { BrandLoader } from '@/components/common/BrandLoader';
+import { ProductImage } from '@/components/common/ProductImage';
 
 interface OrderDetailViewProps {
   orderId: string;
@@ -243,15 +244,11 @@ export function OrderDetailView({
                 >
                   {/* Thumbnail */}
                   <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-lg bg-gray-50 border border-gray-200/70 overflow-hidden shrink-0 flex items-center justify-center">
-                    {item.image || item.imageKey ? (
-                      <img
-                        src={item.image || item.imageKey}
-                        alt={item.productName}
-                        className="w-full h-full object-cover"
-                      />
-                    ) : (
-                      <ShoppingBag className="w-5 h-5 text-gray-300" />
-                    )}
+                    <ProductImage
+                      src={item.image || item.imageKey}
+                      alt={item.productName}
+                      className="w-full h-full object-cover"
+                    />
                   </div>
 
                   {/* Thông tin sản phẩm */}

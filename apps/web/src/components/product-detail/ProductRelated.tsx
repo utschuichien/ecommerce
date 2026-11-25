@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import { Star, Heart, ArrowRight } from 'lucide-react';
 import { Product, RELATED_PRODUCTS } from '../mock/mock-data';
 import { formatVND } from '../../lib/api-client';
+import { ProductImage } from '@/components/common/ProductImage';
 import { useCatalogProducts } from '@/features/catalog/hooks/useCatalog';
 
 interface ProductRelatedProps {
@@ -78,7 +79,7 @@ export function ProductRelated({
               >
                 {/* Ảnh sản phẩm thu nhỏ tràn viền (Full border) */}
                 <div className="w-14 h-14 sm:w-15 sm:h-15 shrink-0 rounded-md overflow-hidden border border-gray-200/80 bg-white relative">
-                  <img
+                  <ProductImage
                     src={item.image}
                     alt={item.name}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"

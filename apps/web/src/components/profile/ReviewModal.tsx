@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { Star, X, Upload, Loader2, CheckCircle2 } from 'lucide-react';
 import { useCreateReview } from '@/features/reviews';
 import { toast } from 'sonner';
+import { ProductImage } from '@/components/common/ProductImage';
 
 interface ReviewModalProps {
   isOpen: boolean;
@@ -109,15 +110,11 @@ export function ReviewModal({
         {/* Thông tin sản phẩm */}
         <div className="flex items-center gap-3 p-3 rounded-xl bg-gray-50 border border-gray-100">
           <div className="w-12 h-12 rounded-lg bg-white border border-gray-200 shrink-0 overflow-hidden flex items-center justify-center">
-            {product.image ? (
-              <img
-                src={product.image}
-                alt={product.name}
-                className="w-full h-full object-cover"
-              />
-            ) : (
-              <div className="text-xs text-gray-300">No Image</div>
-            )}
+            <ProductImage
+              src={product.image}
+              alt={product.name}
+              className="w-full h-full object-cover"
+            />
           </div>
           <div className="flex-1 min-w-0">
             <h4 className="text-xs font-semibold text-gray-900 truncate">

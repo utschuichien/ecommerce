@@ -267,7 +267,7 @@ export class CatalogService implements OnModuleInit {
       const primaryImage =
         prod.images.find((img: any) => img.isPrimary)?.storageKey ||
         prod.images[0]?.storageKey ||
-        'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=400&auto=format&fit=crop&q=80';
+        '/images/defaults/default-product.svg';
 
       const price = Number(prod.minPrice);
       const comparePrice = prod.variants[0]?.compareAtPrice
@@ -400,7 +400,7 @@ export class CatalogService implements OnModuleInit {
     const primaryImage =
       product.images?.find((img: any) => img.isPrimary)?.storageKey ||
       product.images?.[0]?.storageKey ||
-      'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=400&auto=format&fit=crop&q=80';
+      '/images/defaults/default-product.svg';
 
     const price = Number(product.minPrice);
     const comparePrice = product.variants?.[0]?.compareAtPrice

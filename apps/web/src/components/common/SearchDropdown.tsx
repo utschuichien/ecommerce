@@ -10,6 +10,7 @@ import {
   Loader2,
 } from 'lucide-react';
 import { formatVND } from '../../lib/api-client';
+import { ProductImage } from '@/components/common/ProductImage';
 import { useDebounce } from '@/hooks/useDebounce';
 import { useCatalogProducts } from '@/features/catalog/hooks/useCatalog';
 
@@ -107,7 +108,7 @@ export function SearchDropdown({
               onClick={onClose}
               className="flex items-center gap-3 p-2 rounded-lg bg-transparent hover:bg-emerald-50/80 border border-transparent hover:border-emerald-200/70 transition-all duration-150 group cursor-pointer"
             >
-              <img
+              <ProductImage
                 src={prod.image}
                 alt={prod.name}
                 className="w-11 h-11 rounded-md object-cover bg-gray-100 border border-gray-100 shrink-0 group-hover:scale-105 transition-transform"

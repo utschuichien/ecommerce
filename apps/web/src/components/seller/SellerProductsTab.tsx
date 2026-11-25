@@ -18,6 +18,7 @@ import {
   Trash2,
 } from 'lucide-react';
 import { Pagination, ConfirmDeleteModal } from '@/components/common';
+import { ProductImage } from '@/components/common/ProductImage';
 import { toast } from 'sonner';
 import {
   useSellerProductStats,
@@ -459,21 +460,12 @@ export function SellerProductsTab() {
                       >
                         {/* Ảnh sản phẩm + Checkbox + Badge */}
                         <div className="relative aspect-square w-full bg-gray-50 overflow-hidden">
-                          {product.image ? (
-                            <img
-                              src={product.image}
-                              alt={product.name}
-                              onClick={() => setViewingProduct(product)}
-                              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 cursor-pointer"
-                            />
-                          ) : (
-                            <div
-                              onClick={() => setViewingProduct(product)}
-                              className="w-full h-full flex items-center justify-center text-gray-300 cursor-pointer"
-                            >
-                              <Box className="w-10 h-10 stroke-[1.5]" />
-                            </div>
-                          )}
+                          <ProductImage
+                            src={product.image}
+                            alt={product.name}
+                            onClick={() => setViewingProduct(product)}
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 cursor-pointer"
+                          />
 
                           {/* Badge trạng thái */}
                           <div className="absolute top-2.5 left-2.5 z-10 pointer-events-none">
@@ -701,15 +693,11 @@ export function SellerProductsTab() {
                           onClick={() => setViewingProduct(product)}
                           className="w-12 h-12 rounded-lg bg-gray-50 border border-gray-100 p-1 relative overflow-hidden shrink-0 flex items-center justify-center cursor-pointer group"
                         >
-                          {product.image ? (
-                            <img
-                              src={product.image}
-                              alt={product.name}
-                              className="w-full h-full object-cover p-0.5 group-hover:scale-105 transition-transform rounded"
-                            />
-                          ) : (
-                            <Box className="w-5 h-5 text-gray-300" />
-                          )}
+                          <ProductImage
+                            src={product.image}
+                            alt={product.name}
+                            className="w-full h-full object-cover p-0.5 group-hover:scale-105 transition-transform rounded"
+                          />
                         </div>
                         <div className="min-w-0">
                           <div className="flex items-center gap-1.5">

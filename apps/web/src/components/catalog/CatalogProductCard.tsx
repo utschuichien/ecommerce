@@ -6,6 +6,7 @@ import { toast } from 'sonner';
 import { Product } from '../mock/mock-data';
 import { formatVND } from '../../lib/api-client';
 import { ProductBadge } from './ProductBadge';
+import { ProductImage } from '@/components/common/ProductImage';
 import { useAuthStore } from '@/features/auth/stores/useAuthStore';
 import { useAddToCart } from '@/features/cart';
 import { extractErrorMessage } from '../../lib/api-client';
@@ -96,7 +97,7 @@ export function CatalogProductCard({
               <ProductBadge badge={product.badge} badgeColor={product.badgeColor} />
             </div>
           )}
-          <img
+          <ProductImage
             src={product.image}
             alt={product.name}
             className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300 select-none"
@@ -206,7 +207,7 @@ export function CatalogProductCard({
         </button>
 
         {/* Ảnh sản phẩm lấp đầy tràn viền 3 phía không bị khoảng trống */}
-        <img
+        <ProductImage
           src={product.image}
           alt={product.name}
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 select-none"

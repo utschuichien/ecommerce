@@ -18,6 +18,7 @@ import {
 import { UserAvatar } from '@/components/common/UserAvatar';
 import { Pagination } from '@/components/common/Pagination';
 import { ConfirmDeleteModal } from '@/components/common/ConfirmDeleteModal';
+import { ProductImage } from '@/components/common/ProductImage';
 import { useAdminReviews, useDeleteReview } from '@/features/admin';
 
 export function AdminReviewsTab() {
@@ -206,11 +207,7 @@ export function AdminReviewsTab() {
                 {/* Sản phẩm được đánh giá */}
                 <div className="p-2.5 bg-gray-50/80 rounded-lg border border-gray-200/60 flex items-center gap-2.5">
                   <div className="w-8 h-8 rounded-lg bg-gray-200/80 overflow-hidden shrink-0 flex items-center justify-center">
-                    {rev.product.image ? (
-                      <img src={rev.product.image} alt={rev.product.name} className="w-full h-full object-cover" />
-                    ) : (
-                      <Package className="w-4 h-4 text-gray-400" />
-                    )}
+                    <ProductImage src={rev.product.image} alt={rev.product.name} className="w-full h-full object-cover" />
                   </div>
                   <div className="min-w-0">
                     <p className="font-semibold text-gray-900 truncate">{rev.product.name}</p>

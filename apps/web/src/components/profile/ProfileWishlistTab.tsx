@@ -3,6 +3,7 @@
 import React, { useState, useMemo } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { ProductImage } from '@/components/common/ProductImage';
 import { useSearchParams, useRouter, usePathname } from 'next/navigation';
 import {
   Heart,
@@ -306,13 +307,11 @@ export function ProfileWishlistTab({
                   {/* PHẦN TRÊN: ẢNH & THÔNG TIN SẢN PHẨM */}
                   <div>
                     {/* Ảnh Thumbnail */}
-                    <div className="w-full aspect-square rounded-lg bg-gray-50 relative overflow-hidden mb-3 border border-gray-100 flex items-center justify-center">
-                      <Image
+                    <div className="w-full aspect-square rounded-lg bg-gray-50 relative overflow-hidden mb-3 border border-gray-100 flex items-center justify-center p-2">
+                      <ProductImage
                         src={item.image}
                         alt={item.name}
-                        fill
-                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                        className="object-contain p-2 group-hover:scale-105 transition duration-300"
+                        className="w-full h-full object-contain group-hover:scale-105 transition duration-300"
                       />
 
                       {/* Badge giảm giá */}

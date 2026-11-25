@@ -1516,7 +1516,7 @@ export class SellerService {
       image:
         it.imageKey ||
         it.variant?.images?.[0]?.storageKey ||
-        'https://images.unsplash.com/photo-1600294037681-c80b4cb5b434?w=150&auto=format&fit=crop&q=80',
+        '/images/defaults/default-product.svg',
     }));
 
     return {
@@ -2136,7 +2136,7 @@ export class SellerService {
       const imageUrl =
         v.images?.[0]?.storageKey ||
         v.product?.images?.[0]?.storageKey ||
-        'https://images.unsplash.com/photo-1600294037681-c80b4cb5b434?w=150&auto=format&fit=crop&q=80';
+        '/images/defaults/default-product.svg';
 
       const updatedAtStr = new Date(v.inventory?.updatedAt || v.updatedAt).toLocaleDateString('vi-VN');
 
@@ -2326,7 +2326,7 @@ export class SellerService {
             name: item.productName || prod?.name || 'Sản phẩm',
             image:
               prod?.images?.[0]?.storageKey ||
-              'https://images.unsplash.com/photo-1600294037681-c80b4cb5b434?w=200&auto=format&fit=crop&q=80',
+              '/images/defaults/default-product.svg',
             soldCount,
             revenueText: revText,
           };
@@ -2345,7 +2345,7 @@ export class SellerService {
         name: p.name,
         image:
           p.images?.[0]?.storageKey ||
-          'https://images.unsplash.com/photo-1600294037681-c80b4cb5b434?w=200&auto=format&fit=crop&q=80',
+          '/images/defaults/default-product.svg',
         soldCount: 0,
         revenueText: '0đ',
       }));
@@ -2567,7 +2567,7 @@ export class SellerService {
             revenue: revText,
             image:
               prod?.images?.[0]?.storageKey ||
-              'https://images.unsplash.com/photo-1600294037681-c80b4cb5b434?w=150&auto=format&fit=crop&q=80',
+              '/images/defaults/default-product.svg',
             rankBg: rankBgs[idx] || 'bg-gray-100 text-gray-700',
           };
         }),
@@ -2587,7 +2587,7 @@ export class SellerService {
         revenue: '0đ',
         image:
           p.images?.[0]?.storageKey ||
-          'https://images.unsplash.com/photo-1600294037681-c80b4cb5b434?w=150&auto=format&fit=crop&q=80',
+          '/images/defaults/default-product.svg',
         rankBg: rankBgs[idx] || 'bg-gray-100 text-gray-700',
       }));
     }

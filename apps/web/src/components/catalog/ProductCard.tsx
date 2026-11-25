@@ -5,6 +5,7 @@ import { Heart, Star } from 'lucide-react';
 import { Product } from '../mock/mock-data';
 import { formatVND } from '../../lib/api-client';
 import { ProductBadge } from './ProductBadge';
+import { ProductImage } from '@/components/common/ProductImage';
 
 interface ProductCardProps {
   product: Product;
@@ -35,7 +36,7 @@ export function ProductCard({ product, onSelect }: ProductCardProps) {
         </button>
 
         {/* Product Image */}
-        <img
+        <ProductImage
           src={product.image}
           alt={product.name}
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"

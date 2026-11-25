@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { MOCK_CART_ITEMS } from '../mock/mock-data';
 import { formatVND } from '../../lib/api-client';
+import { ProductImage } from '@/components/common/ProductImage';
 
 interface CartCheckoutViewProps {
   onNavigateCatalog: () => void;
@@ -67,7 +68,7 @@ export function CartCheckoutView({ onNavigateCatalog, onOrderSuccess }: CartChec
           <div className="divide-y divide-gray-100">
             {cartItems.map((item) => (
               <div key={item.id} className="py-4 flex gap-4 items-center">
-                <img
+                <ProductImage
                   src={item.image}
                   alt={item.name}
                   className="w-16 h-16 object-contain rounded-lg border border-gray-100 bg-gray-50 p-1"

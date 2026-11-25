@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="100%" height="100%" fill="none">
+  <defs>
+    <linearGradient id="prodBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F8FAFC"/>
+      <stop offset="100%" stop-color="#F1F5F9"/>
+    </linearGradient>
+    <linearGradient id="emeraldMain" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10B981"/>
+      <stop offset="100%" stop-color="#047857"/>
+    </linearGradient>
+    <filter id="prodShadow" x="-15%" y="-15%" width="130%" height="130%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#0F172A" flood-opacity="0.08"/>
+      <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#059669" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+
+  <!-- Container nền vuông bo góc tinh tế -->
+  <rect width="256" height="256" rx="24" fill="url(#prodBg)"/>
+
+  <!-- Vòng tròn hào quang ambient nhẹ -->
+  <circle cx="128" cy="116" r="68" fill="#10B981" fill-opacity="0.06"/>
+  <circle cx="128" cy="116" r="48" fill="#10B981" fill-opacity="0.08"/>
+
+  <!-- Hộp sản phẩm / Túi mua sắm trung tâm -->
+  <g filter="url(#prodShadow)">
+    <!-- Hộp sản phẩm chính: Squircle Emerald 84x84 -->
+    <rect x="86" y="74" width="84" height="84" rx="22" fill="url(#emeraldMain)"/>
+    <rect x="86" y="74" width="84" height="84" rx="22" stroke="#FFFFFF" stroke-width="2" stroke-opacity="0.35"/>
+
+    <!-- Biểu tượng túi mua sắm trắng sắc nét chính giữa -->
+    <g transform="translate(104, 92)" fill="#FFFFFF">
+      <path d="M38 12h-4c0-5.52-4.48-10-10-10S14 6.48 14 12h-4c-2.2 0-4 1.8-4 4v24c0 2.2 1.8 4 4 4h28c2.2 0 4-1.8 4-4V16c0-2.2-1.8-4-4-4zm-14-6c3.31 0 6 2.69 6 6H18c0-3.31 2.69-6 6-6zm14 34H10V16h28v24zm-14-16c-3.31 0-6-2.69-6-6h-4c0 5.52 4.48 10 10 10s10-4.48 10-10h-4c0 3.31-2.69 6-6 6z"/>
+    </g>
+
+    <!-- Tag ngôi sao nhỏ chứng nhận sản phẩm chính hãng ở góc trên phải -->
+    <circle cx="164" cy="74" r="13" fill="#F59E0B" stroke="#FFFFFF" stroke-width="2.5"/>
+    <path d="M164 68L165.6 72L169.8 72.4L166.6 75.2L167.5 79.4L164 77.2L160.5 79.4L161.4 75.2L158.2 72.4L162.4 72L164 68Z" fill="#FFFFFF"/>
+  </g>
+
+  <!-- Chữ nhãn CommerceOS thanh lịch bên dưới -->
+  <text x="128" y="190" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="700" fill="#334155" letter-spacing="1">COMMERCEOS</text>
+  <text x="128" y="208" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="500" fill="#94A3B8">Sản phẩm chính hãng</text>
+</svg>

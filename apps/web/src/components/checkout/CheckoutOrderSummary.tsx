@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
+import { ProductImage } from '@/components/common/ProductImage';
 import { Ticket, X, Plus, Minus, Lock, ArrowRight, ShieldCheck, Loader2 } from 'lucide-react';
 import { CheckoutItem } from './checkout-types';
 import { formatVND } from '../../lib/api-client';
@@ -90,12 +90,10 @@ export function CheckoutOrderSummary({
             <div className="flex items-start gap-3">
               {/* Ảnh sản phẩm vuông viền nhẹ */}
               <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-gray-50/80 p-1 shrink-0 relative overflow-hidden flex items-center justify-center">
-                <Image
+                <ProductImage
                   src={item.image}
                   alt={item.name}
-                  fill
-                  sizes="56px"
-                  className="object-contain p-0.5"
+                  className="w-full h-full object-contain p-0.5"
                 />
               </div>
 

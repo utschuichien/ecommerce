@@ -266,7 +266,7 @@ export class OrderingService {
       const imageUrl =
         p.images?.find((img: any) => img.isPrimary)?.storageKey ||
         p.images?.[0]?.storageKey ||
-        'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=400&auto=format&fit=crop&q=80';
+        '/images/defaults/default-product.svg';
 
       grandSubtotal += lineTotal;
       totalQuantity += item.quantity;

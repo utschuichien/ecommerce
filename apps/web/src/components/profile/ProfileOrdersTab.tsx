@@ -20,6 +20,7 @@ import {
 } from 'lucide-react';
 import { ProfileOrder } from './profile-types';
 import { formatVND } from '../../lib/api-client';
+import { ProductImage } from '@/components/common/ProductImage';
 import {
   useCancelOrder,
   useMyOrders,
@@ -386,15 +387,11 @@ export function ProfileOrdersTab({
                   >
                     {/* Thumbnail sản phẩm nhỏ gọn */}
                     <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-lg border border-gray-200/70 bg-gray-50 overflow-hidden shrink-0 flex items-center justify-center p-0.5">
-                      {imageSrc ? (
-                        <img
-                          src={imageSrc}
-                          alt={productName}
-                          className="w-full h-full object-cover rounded"
-                        />
-                      ) : (
-                        <Package className="w-4 h-4 text-gray-300" />
-                      )}
+                      <ProductImage
+                        src={imageSrc}
+                        alt={productName}
+                        className="w-full h-full object-cover rounded"
+                      />
                     </div>
 
                     {/* Tên & biến thể */}

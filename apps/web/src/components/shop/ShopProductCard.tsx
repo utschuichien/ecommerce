@@ -1,11 +1,11 @@
 'use client';
 
 import React, { useState } from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
 import { Heart } from 'lucide-react';
 import { ShopProduct } from './shop-types';
 import { formatVND } from '../../lib/api-client';
+import { ProductImage } from '@/components/common/ProductImage';
 
 interface ShopProductCardProps {
   product: ShopProduct;
@@ -54,12 +54,10 @@ export function ShopProductCard({ product }: ShopProductCardProps) {
 
         {/* Khung ảnh vuông mềm mại */}
         <div className="relative aspect-square w-full bg-[#f8f9fa] rounded-xl sm:rounded-2xl overflow-hidden flex items-center justify-center p-3 mb-2.5">
-          <Image
+          <ProductImage
             src={product.image}
             alt={product.name}
-            fill
-            sizes="(max-width: 768px) 50vw, (max-width: 1200px) 25vw, 20vw"
-            className="object-contain p-2 group-hover:scale-105 transition-transform duration-300"
+            className="w-full h-full object-contain p-2 group-hover:scale-105 transition-transform duration-300"
           />
         </div>
 

@@ -50,8 +50,7 @@ const DEFAULT_BANNER =
   'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1600&auto=format&fit=crop&q=80';
 const DEFAULT_LOGO =
   'https://images.unsplash.com/photo-1611186871348-b1ce696e52c9?w=200&auto=format&fit=crop&q=80';
-const DEFAULT_PRODUCT_IMAGE =
-  'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=400&auto=format&fit=crop&q=80';
+const DEFAULT_PRODUCT_IMAGE = '/images/defaults/default-product.svg';
 
 @Injectable()
 export class ShopsService {

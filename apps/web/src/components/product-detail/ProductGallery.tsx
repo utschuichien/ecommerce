@@ -3,6 +3,8 @@
 import React, { useState } from 'react';
 import { ChevronLeft, ChevronRight, Eye } from 'lucide-react';
 import { ProductBadge } from '../catalog/ProductBadge';
+import { ProductImage } from '@/components/common/ProductImage';
+import { DEFAULT_PRODUCT_IMAGE } from '@/lib/constants';
 
 interface ProductGalleryProps {
   images: string[];
@@ -19,8 +21,11 @@ export function ProductGallery({
 }: ProductGalleryProps) {
   const [selectedIndex, setSelectedIndex] = useState(0);
 
-  // Đảm bảo luôn có ít nhất 1 ảnh
-  const galleryImages = images && images.length > 0 ? images : ['/placeholder.png'];
+  // Đảm bảo luôn có ít nhất 1 ảnh hợp lệ
+  const galleryImages =
+    images && images.length > 0 && images.some(Boolean)
+      ? images
+      : [DEFAULT_PRODUCT_IMAGE];
   const activeImage = galleryImages[selectedIndex] || galleryImages[0];
 
   const handlePrev = () => {
@@ -48,7 +53,7 @@ export function ProductGallery({
                   : 'border-gray-200/80 hover:border-gray-300 opacity-70 hover:opacity-100'
               }`}
             >
-              <img
+              <ProductImage
                 src={img}
                 alt={`${productName} thumbnail ${idx + 1}`}
                 className="w-full h-full object-cover"
@@ -69,7 +74,7 @@ export function ProductGallery({
                 : 'border-gray-200 hover:border-gray-300'
             }`}
           >
-            <img
+            <ProductImage
               src={galleryImages[4]}
               alt="Xem thêm ảnh"
               className="w-full h-full object-cover opacity-50"
@@ -104,7 +109,7 @@ export function ProductGallery({
         )}
 
         {/* Ảnh chính to tràn viền (Full border) */}
-        <img
+        <ProductImage
           src={activeImage}
           alt={productName}
           className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"

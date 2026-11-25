@@ -178,7 +178,7 @@ export class CartService {
       const primaryImage =
         p.images?.find((img: any) => img.isPrimary)?.storageKey ||
         p.images?.[0]?.storageKey ||
-        'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=400&auto=format&fit=crop&q=80';
+        '/images/defaults/default-product.svg';
 
       const currentPrice = Number(v.price);
       const comparePrice = v.compareAtPrice ? Number(v.compareAtPrice) : null;
@@ -284,7 +284,7 @@ export class CartService {
     if (currentQty + requestedQty > availableStock) {
       if (currentQty >= availableStock) {
         throw new BadRequestException(
-          `Số lượng trong giỏ hàng đã đạt giới hạn tồn kho hiện có (${availableStock} sản phẩm).`,
+          `Số lượng trong giỏ hàng đã đạt giới hạn tồn kho hiện có.`,
         );
       }
 
