@@ -20,7 +20,7 @@ import { SearchDropdown } from './SearchDropdown';
 import { NotificationBell } from '@/features/notifications';
 import { useAuth } from '@/features/auth/hooks/useAuth';
 import { useCart } from '@/features/cart';
-import { useWishlistIds } from '@/features/wishlist/hooks/useWishlist';
+import { useWishlist } from '@/features/wishlist/hooks/useWishlist';
 
 interface HeaderProps {
   cartCount?: number;
@@ -31,7 +31,7 @@ export function Header({ cartCount: explicitCartCount }: HeaderProps) {
   const [mounted, setMounted] = useState(false);
   const { user, isAuthenticated, isLoadingUser } = useAuth();
   const { data: cartData } = useCart();
-  const { data: wishlistIds = [] } = useWishlistIds();
+  const { data: wishlistData } = useWishlist();
   const [searchTerm, setSearchTerm] = useState('');
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const searchContainerRef = useRef<HTMLDivElement>(null);
@@ -59,9 +59,9 @@ export function Header({ cartCount: explicitCartCount }: HeaderProps) {
     ? (cartData?.totalQuantity ?? 0)
     : (explicitCartCount !== undefined ? explicitCartCount : 0);
 
-  // Lấy số lượng yêu thích thực tế nếu đã đăng nhập
+  // Lấy số lượng yêu thích thực tế trực tiếp từ kết quả API Wishlist nếu đã đăng nhập
   const wishlistCount = isAuthenticated
-    ? (user?.wishlistCount ?? wishlistIds.length)
+    ? (wishlistData?.pagination?.total ?? (wishlistData?.data?.length || 0))
     : 0;
 
   const handleSearchSubmit = (e?: React.FormEvent, customTerm?: string) => {

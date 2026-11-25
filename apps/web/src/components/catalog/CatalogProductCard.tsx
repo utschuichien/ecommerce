@@ -189,10 +189,12 @@ export function CatalogProductCard({
         <button
           type="button"
           onClick={handleFavoriteClick}
-          className={`absolute top-2.5 right-2.5 z-10 w-7 h-7 flex items-center justify-center rounded-full bg-white/95 backdrop-blur-xs shadow-2xs hover:bg-white transition cursor-pointer shrink-0 ${
-            isFavorite ? 'text-rose-500' : 'text-gray-700 hover:text-gray-900'
+          className={`absolute top-2.5 right-2.5 z-10 w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center rounded-full backdrop-blur-xs transition cursor-pointer shrink-0 border ${
+            isFavorite
+              ? 'text-rose-500 bg-rose-50/90 border-rose-200 shadow-2xs'
+              : 'text-gray-700 bg-white/95 border-gray-200/90 shadow-2xs hover:text-rose-500 hover:border-rose-200'
           }`}
-          title="Yêu thích"
+          title={isFavorite ? 'Bỏ yêu thích' : 'Yêu thích'}
         >
           <Heart
             className={`w-3.5 h-3.5 ${

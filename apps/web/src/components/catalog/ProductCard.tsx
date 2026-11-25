@@ -32,8 +32,10 @@ export function ProductCard({ product, onSelect }: ProductCardProps) {
         <button
           type="button"
           onClick={(e) => toggleWishlist(product, e)}
-          className={`absolute top-2.5 right-2.5 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white shadow-2xs border border-gray-100 flex items-center justify-center transition z-10 cursor-pointer ${
-            isFav ? 'text-rose-500' : 'text-gray-700 hover:text-rose-500'
+          className={`absolute top-2.5 right-2.5 w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center transition z-10 cursor-pointer border ${
+            isFav
+              ? 'text-rose-500 bg-rose-50/90 border-rose-200 shadow-2xs'
+              : 'text-gray-700 bg-white/95 border-gray-200/90 shadow-2xs hover:text-rose-500 hover:border-rose-200'
           }`}
           title={isFav ? 'Bỏ yêu thích' : 'Thêm vào yêu thích'}
           aria-label={isFav ? 'Bỏ yêu thích' : 'Thêm vào yêu thích'}

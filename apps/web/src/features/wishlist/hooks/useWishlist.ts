@@ -79,6 +79,7 @@ export interface WishlistProductTarget {
  * Hook thống nhất để kiểm tra và bật/tắt yêu thích ở mọi nơi trong hệ thống
  */
 export function useWishlistToggle() {
+  const queryClient = useQueryClient();
   const isAuthenticated = useAuthStore((s) => s.isAuthenticated);
   const { data: wishlistIds = [] } = useWishlistIds();
   const addToWishlistMutation = useAddToWishlist();
@@ -121,7 +122,15 @@ export function useWishlistToggle() {
     const currentlyWishlisted = isWishlisted(product);
     const productName = product.name || 'Sản phẩm';
 
+    // Cập nhật lạc quan (Optimistic update) để icon trái tim phản hồi tức thì
     if (currentlyWishlisted) {
+      queryClient.setQueryData(WISHLIST_QUERY_KEYS.IDS(), (old: string[] = []) => {
+        const removeSet = new Set(
+          [String(product.id || ''), String(product.productId || ''), String(product.slug || '')].filter(Boolean)
+        );
+        return old.filter((id) => !removeSet.has(id));
+      });
+
       removeFromWishlistMutation.mutate(identifier, {
         onSuccess: () => {
           toast.success('Đã xóa khỏi yêu thích', {
@@ -129,12 +138,21 @@ export function useWishlistToggle() {
           });
         },
         onError: (err) => {
+          queryClient.invalidateQueries({ queryKey: ['wishlist'] });
           toast.error('Lỗi yêu thích', {
             description: extractErrorMessage(err, 'Không thể xóa khỏi danh sách yêu thích.'),
           });
         },
       });
     } else {
+      queryClient.setQueryData(WISHLIST_QUERY_KEYS.IDS(), (old: string[] = []) => {
+        const next = new Set(old);
+        if (product.id) next.add(String(product.id));
+        if (product.productId) next.add(String(product.productId));
+        if (product.slug) next.add(product.slug);
+        return Array.from(next);
+      });
+
       addToWishlistMutation.mutate(identifier, {
         onSuccess: () => {
           toast.success('Đã thêm vào yêu thích', {
@@ -142,6 +160,7 @@ export function useWishlistToggle() {
           });
         },
         onError: (err) => {
+          queryClient.invalidateQueries({ queryKey: ['wishlist'] });
           toast.error('Lỗi yêu thích', {
             description: extractErrorMessage(err, 'Không thể thêm vào danh sách yêu thích.'),
           });
