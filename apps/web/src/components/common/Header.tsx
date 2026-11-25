@@ -6,7 +6,6 @@ import { usePathname, useRouter } from 'next/navigation';
 import {
   Search,
   User,
-  Heart,
   ShoppingCart,
   ChevronDown,
   X,
@@ -20,7 +19,6 @@ import { SearchDropdown } from './SearchDropdown';
 import { NotificationBell } from '@/features/notifications';
 import { useAuth } from '@/features/auth/hooks/useAuth';
 import { useCart } from '@/features/cart';
-import { useWishlist } from '@/features/wishlist/hooks/useWishlist';
 
 interface HeaderProps {
   cartCount?: number;
@@ -31,7 +29,6 @@ export function Header({ cartCount: explicitCartCount }: HeaderProps) {
   const [mounted, setMounted] = useState(false);
   const { user, isAuthenticated, isLoadingUser } = useAuth();
   const { data: cartData } = useCart();
-  const { data: wishlistData } = useWishlist();
   const [searchTerm, setSearchTerm] = useState('');
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const searchContainerRef = useRef<HTMLDivElement>(null);
@@ -58,11 +55,6 @@ export function Header({ cartCount: explicitCartCount }: HeaderProps) {
   const cartCount = isAuthenticated
     ? (cartData?.totalQuantity ?? 0)
     : (explicitCartCount !== undefined ? explicitCartCount : 0);
-
-  // Lấy số lượng yêu thích thực tế trực tiếp từ kết quả API Wishlist nếu đã đăng nhập
-  const wishlistCount = isAuthenticated
-    ? (wishlistData?.pagination?.total ?? (wishlistData?.data?.length || 0))
-    : 0;
 
   const handleSearchSubmit = (e?: React.FormEvent, customTerm?: string) => {
     if (e) e.preventDefault();
@@ -146,29 +138,6 @@ export function Header({ cartCount: explicitCartCount }: HeaderProps) {
           <div className="order-2 sm:order-3 flex items-center gap-2 sm:gap-2.5 text-gray-700 shrink-0">
             {/* Chuông thông báo in-app */}
             {mounted && isAuthenticated && <NotificationBell />}
-
-            {/* Yêu thích (Wishlist) với Badge số lượng */}
-            {!mounted ? (
-              <div
-                className="w-9 sm:w-10 h-9 sm:h-10 rounded-full bg-gray-100/90 animate-pulse flex items-center justify-center border border-gray-200/60 shrink-0"
-                aria-label="Đang tải yêu thích"
-              >
-                <div className="w-4 h-4 rounded-full bg-gray-200/90" />
-              </div>
-            ) : (
-              <Link
-                href="/profile?tab=wishlist"
-                className="w-9 sm:w-10 h-9 sm:h-10 hover:text-rose-500 text-gray-700 bg-gray-50/90 hover:bg-rose-50/80 border border-gray-200/80 hover:border-rose-300 transition-all duration-200 relative cursor-pointer flex items-center justify-center rounded-full shadow-xs hover:shadow-sm active:scale-95"
-                title="Danh sách yêu thích"
-              >
-                <Heart className="w-[18px] h-[18px]" strokeWidth={2} />
-                {wishlistCount > 0 && (
-                  <span className="absolute -top-1 -right-1 bg-gradient-to-r from-rose-500 to-pink-600 text-white font-bold text-[10px] min-w-[19px] h-[19px] px-1 rounded-full flex items-center justify-center border-2 border-white leading-none shadow-xs">
-                    {wishlistCount > 99 ? '99+' : wishlistCount}
-                  </span>
-                )}
-              </Link>
-            )}
 
             {/* Cart with Badge (Skeleton hình tròn khi chưa mounted / đang tải) */}
             {!mounted ? (
