@@ -5,39 +5,41 @@ import { Home, Compass } from 'lucide-react';
 
 export default function NotFound() {
   return (
-    <div className="min-h-screen flex flex-col bg-[#f8f9fa]">
+    <div className="min-h-screen flex flex-col bg-[#fafbfc]">
       <Header />
 
-      <main className="flex-1 flex items-center justify-center px-4 py-12 sm:py-16">
-        <div className="w-full max-w-md text-center">
-          {/* 404 với la bàn thay cho số 0 */}
-          <div className="flex items-center justify-center gap-2 select-none" aria-hidden="true">
-            <span className="text-6xl sm:text-7xl font-extrabold leading-none tracking-tight bg-gradient-to-b from-gray-900 to-gray-400 bg-clip-text text-transparent">
+      <main className="flex-1 flex items-center justify-center px-4 py-10 sm:py-14">
+        <div className="w-full max-w-[380px] bg-white border border-gray-150 rounded-2xl p-6 sm:p-7 text-center shadow-xs">
+          {/* 404 nhỏ gọn với icon la bàn thanh thoát */}
+          <div className="flex items-center justify-center gap-1.5 select-none" aria-hidden="true">
+            <span className="text-4xl sm:text-5xl font-black leading-none tracking-tight text-gray-800">
               4
             </span>
-            <span className="flex h-12 w-12 sm:h-16 sm:w-16 items-center justify-center rounded-full bg-gradient-to-br from-emerald-500 to-teal-600 text-white shadow-md shadow-emerald-500/25 ring-4 ring-emerald-100">
-              <Compass className="h-6 w-6 sm:h-8 sm:w-8" strokeWidth={1.8} />
+            <span className="flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 text-white shadow-xs ring-2 ring-emerald-50">
+              <Compass className="h-4.5 w-4.5 sm:h-5 sm:w-5" strokeWidth={2} />
             </span>
-            <span className="text-6xl sm:text-7xl font-extrabold leading-none tracking-tight bg-gradient-to-b from-gray-900 to-gray-400 bg-clip-text text-transparent">
+            <span className="text-4xl sm:text-5xl font-black leading-none tracking-tight text-gray-800">
               4
             </span>
           </div>
           <span className="sr-only">Lỗi 404</span>
 
-          <h1 className="mt-6 text-lg sm:text-xl font-bold tracking-tight text-gray-900">
-            Trang bạn tìm kiếm không tồn tại
+          <h1 className="mt-4 text-sm sm:text-base font-semibold tracking-tight text-gray-900">
+            Không tìm thấy trang
           </h1>
-          <p className="mx-auto mt-2 max-w-sm text-xs sm:text-sm leading-relaxed text-gray-500">
-            Đường dẫn có thể đã thay đổi hoặc địa chỉ bị nhập sai. Vui lòng quay lại trang chủ.
+          <p className="mx-auto mt-1.5 max-w-[300px] text-[12px] sm:text-[13px] leading-relaxed text-gray-500">
+            Đường dẫn có thể đã thay đổi hoặc không tồn tại. Vui lòng quay về trang chủ.
           </p>
 
-          <Link
-            href="/"
-            className="mt-6 inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-600 px-5 py-2.5 text-sm font-semibold text-white shadow-xs transition hover:bg-emerald-700 active:scale-95"
-          >
-            <Home className="h-4 w-4" />
-            <span>Về trang chủ</span>
-          </Link>
+          <div className="mt-5 flex items-center justify-center">
+            <Link
+              href="/"
+              className="inline-flex items-center justify-center gap-1.5 h-8.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 px-4 text-xs font-medium text-white shadow-xs transition active:scale-95"
+            >
+              <Home className="h-3.5 w-3.5" />
+              <span>Quay về trang chủ</span>
+            </Link>
+          </div>
         </div>
       </main>
 
