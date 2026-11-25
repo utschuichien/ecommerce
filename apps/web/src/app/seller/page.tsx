@@ -2,6 +2,7 @@ import React, { Suspense } from 'react';
 import { Metadata } from 'next';
 import { SellerView } from '../../components/seller/SellerView';
 import { ProtectedRoute } from '../../components/auth/ProtectedRoute';
+import { BrandLoader } from '@/components/common/BrandLoader';
 
 export const metadata: Metadata = {
   title: 'Kênh người bán | CommerceOS',
@@ -11,7 +12,7 @@ export const metadata: Metadata = {
 export default function SellerDashboardPage() {
   return (
     <ProtectedRoute allowedRoles={['SELLER']}>
-      <Suspense fallback={<div className="min-h-screen bg-[#f8f9fa] flex items-center justify-center text-xs text-gray-500">Đang tải...</div>}>
+      <Suspense fallback={<BrandLoader fullScreen size="lg" message="Đang tải kênh người bán..." />}>
         <SellerView />
       </Suspense>
     </ProtectedRoute>

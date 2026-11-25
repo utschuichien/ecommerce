@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import { Logo } from './Logo';
 
 export function Footer() {
@@ -13,12 +14,16 @@ export function Footer() {
           <span className="text-xs text-gray-400">— Nền tảng thương mại điện tử hiện đại cho mọi người</span>
         </div>
 
-        <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-xs text-gray-400">
-          <span>Điều khoản dịch vụ</span>
-          <span>·</span>
-          <span>Chính sách bảo mật</span>
-          <span>·</span>
-          <span>© 2026 CommerceOS</span>
+        <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-xs text-gray-500">
+          <Link href="/terms" className="hover:text-emerald-700 transition">
+            Điều khoản dịch vụ
+          </Link>
+          <span className="text-gray-300">·</span>
+          <Link href="/privacy" className="hover:text-emerald-700 transition">
+            Chính sách bảo mật
+          </Link>
+          <span className="text-gray-300">·</span>
+          <span className="text-gray-400">© 2026 CommerceOS</span>
         </div>
       </div>
     </footer>

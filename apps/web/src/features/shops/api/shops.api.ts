@@ -38,7 +38,42 @@ export interface PublicVoucherItem {
   isActive: boolean;
 }
 
+export interface PublicShopListItem {
+  id: string;
+  name: string;
+  slug: string;
+  logo: string;
+  banner: string;
+  slogan: string | null;
+  description: string | null;
+  productsCount: number;
+  joinDate: string;
+  isOfficial: boolean;
+}
+
+export interface PublicShopsResponse {
+  items: PublicShopListItem[];
+  pagination: {
+    page: number;
+    limit: number;
+    totalItems: number;
+    totalPages: number;
+  };
+}
+
 export const shopsApi = {
+  /**
+   * Lấy danh sách các gian hàng công khai đang hoạt động
+   */
+  async getShops(params?: {
+    search?: string;
+    page?: number;
+    limit?: number;
+  }): Promise<PublicShopsResponse> {
+    const response = await apiClient.get<any>('/shops', { params });
+    return response.data?.data ?? response.data;
+  },
+
   /**
    * Lấy thông tin công khai của Shop theo Slug / ID
    */

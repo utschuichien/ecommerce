@@ -297,13 +297,13 @@ export function RegisterForm({ onSwitchToLogin, onSubmitSuccess }: RegisterFormP
             />
             <span>
               Tôi đồng ý với{' '}
-              <a href="#" className="font-semibold text-emerald-600 hover:text-emerald-700">
+              <Link href="/terms" target="_blank" className="font-semibold text-emerald-600 hover:text-emerald-700 underline">
                 Điều khoản sử dụng
-              </a>{' '}
+              </Link>{' '}
               và{' '}
-              <a href="#" className="font-semibold text-emerald-600 hover:text-emerald-700">
+              <Link href="/privacy" target="_blank" className="font-semibold text-emerald-600 hover:text-emerald-700 underline">
                 Chính sách bảo mật
-              </a>
+              </Link>
             </span>
           </label>
           {fieldErrors.agreeTerms && (

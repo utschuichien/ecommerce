@@ -10,6 +10,8 @@ import {
   ShoppingCart,
   ChevronDown,
   X,
+  ShieldCheck,
+  Store,
 } from 'lucide-react';
 import { Logo } from './Logo';
 import { CategoryDropdown } from './CategoryDropdown';
@@ -221,6 +223,14 @@ export function Header({ cartCount: explicitCartCount }: HeaderProps) {
 function HeaderSubNav() {
   const pathname = usePathname();
   const isHome = pathname === '/';
+  const { user } = useAuth();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const isAdmin = mounted && Boolean(user?.roles?.includes('ADMIN'));
 
   return (
     <nav className="flex items-center gap-5 sm:gap-7 mt-3 pt-2.5 border-t border-gray-100/80 text-xs font-semibold text-gray-700 relative">
@@ -236,7 +246,7 @@ function HeaderSubNav() {
       </Link>
 
       {/* 2-Column Category Dropdown with Hover & Spacious Layout */}
-      <CategoryDropdown />
+      <CategoryDropdown variant="bento" />
 
       <Link
         href="/products?filter=promotions"
@@ -250,25 +260,28 @@ function HeaderSubNav() {
       >
         Bán chạy
       </Link>
-      <a
-        href="#"
-        className="pb-1 border-b-2 border-transparent text-xs font-semibold text-gray-700 hover:text-emerald-700 transition whitespace-nowrap shrink-0 hidden sm:inline-block"
-      >
-        Tin tức
-      </a>
-      <a
-        href="#"
-        className="pb-1 border-b-2 border-transparent text-xs font-semibold text-gray-700 hover:text-emerald-700 transition whitespace-nowrap shrink-0 hidden sm:inline-block"
-      >
-        Hỗ trợ
-      </a>
 
-      <Link
-        href="/seller"
-        className="ml-auto pb-1 border-b-2 border-transparent hover:text-emerald-700 text-emerald-600 text-xs font-semibold transition whitespace-nowrap shrink-0 flex items-center gap-1.5 pl-2"
-      >
-        <span>Kênh người bán</span>
-      </Link>
+      {/* Nhóm lối tắt Kênh người bán & Quản trị Admin */}
+      <div className="ml-auto flex items-center gap-2 sm:gap-3 shrink-0">
+        {isAdmin && (
+          <Link
+            href="/admin"
+            className="pb-1 text-xs font-bold text-rose-700 hover:text-rose-800 transition whitespace-nowrap flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-rose-50 hover:bg-rose-100 border border-rose-200/80 shadow-2xs"
+            title="Bảng điều khiển Quản trị viên"
+          >
+            <ShieldCheck className="w-3.5 h-3.5 text-rose-600" />
+            <span>Quản trị sàn</span>
+          </Link>
+        )}
+
+        <Link
+          href="/seller"
+          className="pb-1 border-b-2 border-transparent hover:text-emerald-700 text-emerald-600 text-xs font-semibold transition whitespace-nowrap flex items-center gap-1.5 pl-1"
+        >
+          <Store className="w-3.5 h-3.5 text-emerald-600" />
+          <span>Kênh người bán</span>
+        </Link>
+      </div>
     </nav>
   );
 }
@@ -298,18 +311,6 @@ function HeaderSubNavFallback() {
       >
         Bán chạy
       </Link>
-      <a
-        href="#"
-        className="pb-1 text-xs font-semibold text-gray-700 hover:text-emerald-700 transition whitespace-nowrap shrink-0 hidden sm:inline-block"
-      >
-        Tin tức
-      </a>
-      <a
-        href="#"
-        className="pb-1 text-xs font-semibold text-gray-700 hover:text-emerald-700 transition whitespace-nowrap shrink-0 hidden sm:inline-block"
-      >
-        Hỗ trợ
-      </a>
       <Link
         href="/seller"
         className="ml-auto pb-1 hover:text-emerald-700 text-emerald-600 text-xs font-semibold transition whitespace-nowrap shrink-0 flex items-center gap-1.5 pl-2"

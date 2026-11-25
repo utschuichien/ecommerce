@@ -285,4 +285,70 @@ export class ShopsService {
       })),
     };
   }
+
+  /**
+   * Lấy danh sách các gian hàng công khai đang hoạt động (kèm tìm kiếm, phân trang)
+   */
+  async getPublicShops(query: { search?: string; page?: number; limit?: number }) {
+    const page = Math.max(1, Number(query.page) || 1);
+    const limit = Math.min(50, Math.max(1, Number(query.limit) || 12));
+    const skip = (page - 1) * limit;
+
+    const where: Prisma.ShopWhereInput = {
+      status: 'ACTIVE',
+    };
+
+    if (query.search && query.search.trim()) {
+      const term = query.search.trim();
+      where.OR = [
+        { name: { contains: term } },
+        { slug: { contains: term } },
+      ];
+    }
+
+    const [total, shops] = await Promise.all([
+      this.prisma.shop.count({ where }),
+      this.prisma.shop.findMany({
+        where,
+        skip,
+        take: limit,
+        orderBy: { createdAt: 'desc' },
+        include: {
+          _count: {
+            select: {
+              products: {
+                where: { status: 'ACTIVE' },
+              },
+            },
+          },
+        },
+      }),
+    ]);
+
+    const items = shops.map((shop) => {
+      const meta = parseShopMetadata(shop.description);
+      return {
+        id: shop.publicId,
+        name: shop.name,
+        slug: shop.slug,
+        logo: shop.logoKey || DEFAULT_LOGO,
+        banner: shop.bannerKey || meta.bannerUrl || DEFAULT_BANNER,
+        slogan: shop.slogan || meta.slogan || null,
+        description: meta.bio || shop.description || null,
+        productsCount: shop._count.products,
+        joinDate: formatRelativeJoinDate(shop.createdAt),
+        isOfficial: true,
+      };
+    });
+
+    return {
+      items,
+      pagination: {
+        page,
+        limit,
+        totalItems: total,
+        totalPages: Math.ceil(total / limit) || 1,
+      },
+    };
+  }
 }

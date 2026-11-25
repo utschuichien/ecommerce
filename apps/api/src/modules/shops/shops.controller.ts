@@ -19,6 +19,19 @@ export class ShopsController {
   constructor(private readonly shopsService: ShopsService) {}
 
   @Public()
+  @Get()
+  @ApiOperation({
+    summary: 'Lấy danh sách các gian hàng công khai đang hoạt động',
+  })
+  async getPublicShops(
+    @Query('search') search?: string,
+    @Query('page') page?: number,
+    @Query('limit') limit?: number,
+  ) {
+    return this.shopsService.getPublicShops({ search, page, limit });
+  }
+
+  @Public()
   @Get(':slug')
   @ApiOperation({
     summary: 'Lấy thông tin công khai của gian hàng (Shop Profile)',

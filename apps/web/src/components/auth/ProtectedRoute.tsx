@@ -8,6 +8,7 @@ import { sellerProductsApi } from '@/features/seller';
 import { useQueryClient } from '@tanstack/react-query';
 import { Loader2, Store, ArrowLeft } from 'lucide-react';
 import { toast } from 'sonner';
+import { BrandLoader } from '@/components/common/BrandLoader';
 
 interface ProtectedRouteProps {
   children: React.ReactNode;
@@ -38,13 +39,7 @@ export function ProtectedRoute({ children, allowedRoles }: ProtectedRouteProps) 
 
   // Đang hydrate hoặc đang tải thông tin user
   if (!isHydrated || isLoadingUser) {
-    return (
-      <div className="min-h-[70vh] flex items-center justify-center p-6">
-        <div className="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center shadow-xs">
-          <Loader2 className="w-6 h-6 animate-spin stroke-[2]" />
-        </div>
-      </div>
-    );
+    return <BrandLoader fullScreen size="md" />;
   }
 
   // Chưa đăng nhập

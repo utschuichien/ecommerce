@@ -2,6 +2,7 @@ import React, { Suspense } from 'react';
 import { Metadata } from 'next';
 import { AdminView } from '../../components/admin';
 import { ProtectedRoute } from '../../components/auth/ProtectedRoute';
+import { BrandLoader } from '@/components/common/BrandLoader';
 
 export const metadata: Metadata = {
   title: 'Quản trị hệ thống | CommerceOS',
@@ -11,7 +12,7 @@ export const metadata: Metadata = {
 export default function AdminDashboardPage() {
   return (
     <ProtectedRoute allowedRoles={['ADMIN']}>
-      <Suspense fallback={<div className="min-h-screen bg-[#f8f9fa] flex items-center justify-center text-xs text-gray-500">Đang tải...</div>}>
+      <Suspense fallback={<BrandLoader fullScreen size="lg" message="Đang tải trang quản trị..." />}>
         <AdminView />
       </Suspense>
     </ProtectedRoute>

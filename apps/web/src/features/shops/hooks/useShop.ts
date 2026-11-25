@@ -50,3 +50,16 @@ export function usePublicShopVouchers(slug: string) {
   });
 }
 
+/**
+ * Hook lấy danh sách các gian hàng công khai (kèm tìm kiếm & phân trang)
+ */
+export function usePublicShops(
+  params: { search?: string; page?: number; limit?: number } = {},
+) {
+  return useQuery({
+    queryKey: ['shops', 'list', params],
+    queryFn: () => shopsApi.getShops(params),
+    staleTime: 1000 * 60 * 5,
+  });
+}
+

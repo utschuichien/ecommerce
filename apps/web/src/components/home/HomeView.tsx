@@ -85,7 +85,7 @@ export function HomeView({
           </h2>
           <button
             onClick={onNavigateToCatalog}
-            className="text-xs sm:text-sm font-semibold text-emerald-600 hover:text-emerald-700 flex items-center gap-1 transition cursor-pointer shrink-0"
+            className="text-xs sm:text-xs font-semibold text-emerald-600 hover:text-emerald-700 flex items-center gap-1 transition cursor-pointer shrink-0"
           >
             <span>Xem tất cả</span>
             <ArrowRight className="w-3.5 h-3.5" />

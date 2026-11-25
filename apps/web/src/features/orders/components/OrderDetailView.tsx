@@ -22,6 +22,7 @@ import { OrderTimeline } from './OrderTimeline';
 import { CancelOrderModal } from './CancelOrderModal';
 import { ReviewModal } from '@/components/profile/ReviewModal';
 import { formatVND } from '@/lib/api-client';
+import { BrandLoader } from '@/components/common/BrandLoader';
 
 interface OrderDetailViewProps {
   orderId: string;
@@ -48,9 +49,8 @@ export function OrderDetailView({
 
   if (isLoading) {
     return (
-      <div className="bg-white border border-gray-200/70 rounded-xl p-12 flex flex-col items-center justify-center gap-2.5 text-gray-400 shadow-2xs">
-        <Loader2 className="w-6 h-6 animate-spin text-emerald-600" />
-        <span className="text-xs font-medium text-gray-500">Đang tải thông tin đơn hàng...</span>
+      <div className="bg-white border border-gray-200/70 rounded-xl p-12 flex flex-col items-center justify-center shadow-2xs">
+        <BrandLoader size="md" message="Đang tải thông tin đơn hàng..." />
       </div>
     );
   }

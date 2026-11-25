@@ -6,3 +6,4 @@ export * from './Breadcrumbs';
 export * from './CategoryDropdown';
 export * from './Pagination';
 export * from './ConfirmDeleteModal';
+export * from './BrandLoader';

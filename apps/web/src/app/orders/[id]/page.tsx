@@ -4,6 +4,7 @@ import { Header } from '@/components/common/Header';
 import { Footer } from '@/components/common/Footer';
 import { Breadcrumbs } from '@/components/common/Breadcrumbs';
 import { ProtectedRoute } from '@/components/auth/ProtectedRoute';
+import { BrandLoader } from '@/components/common/BrandLoader';
 import { OrderDetailView } from '@/features/orders/components/OrderDetailView';
 
 interface OrderDetailPageProps {
@@ -25,13 +26,7 @@ export default function OrderDetailPage({
   params,
 }: OrderDetailPageProps) {
   return (
-    <Suspense
-      fallback={
-        <div className="min-h-screen flex items-center justify-center bg-[#f8f9fa]">
-          <div className="w-8 h-8 rounded-full border-2 border-emerald-600 border-t-transparent animate-spin" />
-        </div>
-      }
-    >
+    <Suspense fallback={<BrandLoader fullScreen size="md" />}>
       <ProtectedRoute>
         <div className="min-h-screen flex flex-col bg-[#f8f9fa]">
           <Header />

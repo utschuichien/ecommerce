@@ -4,6 +4,7 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 import Link from 'next/link';
 import { ArrowLeft, ShoppingBag, Loader2, AlertCircle } from 'lucide-react';
 import { toast } from 'sonner';
+import { BrandLoader } from '@/components/common/BrandLoader';
 import { CheckoutStepper } from './CheckoutStepper';
 import { CheckoutRecipientForm } from './CheckoutRecipientForm';
 import { CheckoutOrderSummary } from './CheckoutOrderSummary';
@@ -84,9 +85,8 @@ interface PlacedOrder {
 
 function CheckoutLoading() {
   return (
-    <div className="flex flex-col items-center justify-center min-h-[400px] gap-3">
-      <Loader2 className="w-7 h-7 text-emerald-600 animate-spin" />
-      <p className="text-xs sm:text-sm text-gray-500">Đang chuẩn bị thông tin thanh toán...</p>
+    <div className="flex flex-col items-center justify-center min-h-[400px] p-6">
+      <BrandLoader size="md" message="Đang chuẩn bị thông tin thanh toán..." />
     </div>
   );
 }
