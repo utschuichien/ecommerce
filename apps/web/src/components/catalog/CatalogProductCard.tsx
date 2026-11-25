@@ -9,6 +9,7 @@ import { ProductBadge } from './ProductBadge';
 import { ProductImage } from '@/components/common/ProductImage';
 import { useAuthStore } from '@/features/auth/stores/useAuthStore';
 import { useAddToCart } from '@/features/cart';
+import { useWishlistToggle } from '@/features/wishlist/hooks/useWishlist';
 import { extractErrorMessage } from '../../lib/api-client';
 
 interface CatalogProductCardProps {
@@ -24,19 +25,13 @@ export function CatalogProductCard({
   onSelect,
   onAddToCart,
 }: CatalogProductCardProps) {
-  const [isFavorite, setIsFavorite] = useState(false);
+  const { isWishlisted, toggleWishlist } = useWishlistToggle();
+  const isFavorite = isWishlisted(product);
   const isAuthenticated = useAuthStore((s) => s.isAuthenticated);
   const addToCartMutation = useAddToCart();
 
   const handleFavoriteClick = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    if (!isAuthenticated) {
-      toast.error('Vui lòng đăng nhập', {
-        description: 'Bạn cần đăng nhập để lưu sản phẩm yêu thích.',
-      });
-      return;
-    }
-    setIsFavorite(!isFavorite);
+    toggleWishlist(product, e);
   };
 
   const handleAddToCartClick = (e: React.MouseEvent) => {

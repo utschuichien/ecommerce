@@ -14,6 +14,7 @@ export interface UserProfile {
   status: string;
   roles: string[];
   shops?: ShopMemberInfo[];
+  wishlistCount?: number;
   createdAt: string;
 }
 

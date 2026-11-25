@@ -69,8 +69,11 @@ export function ProfileWishlistTab({
     if (wishlistResponse?.data && wishlistResponse.data.length > 0) {
       return wishlistResponse.data.map((w) => ({
         id: w.id,
+        productId: w.productId,
+        productNumericId: w.productNumericId,
+        slug: w.slug || (w as any).productSlug || w.productId,
         name: w.name,
-        brand: (w as any).brand,
+        brand: w.brand || (w as any).brand,
         price: w.price,
         oldPrice: w.oldPrice,
         discountPercent: w.discountPercent,
@@ -341,7 +344,7 @@ export function ProfileWishlistTab({
                       )}
 
                       <Link
-                        href={`/products/${(item as any).slug}`}
+                        href={`/products/${(item as any).slug || (item as any).productId || item.id}`}
                         className="block"
                       >
                         <h4 className="text-xs sm:text-sm font-semibold text-gray-950 line-clamp-2 group-hover:text-emerald-700 transition leading-snug">

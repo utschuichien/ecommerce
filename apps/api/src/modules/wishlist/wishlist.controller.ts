@@ -30,6 +30,12 @@ export class WishlistController {
     return this.wishlistService.getWishlist(userId, query.page, query.limit);
   }
 
+  @Get('ids')
+  @ApiOperation({ summary: 'Lấy danh sách ID các sản phẩm đã yêu thích của user' })
+  async getWishlistIds(@CurrentUser('userId') userId: string) {
+    return this.wishlistService.getWishlistProductIds(userId);
+  }
+
   @Post(':productId')
   @ApiOperation({ summary: 'Thêm sản phẩm vào danh sách yêu thích' })
   async addToWishlist(

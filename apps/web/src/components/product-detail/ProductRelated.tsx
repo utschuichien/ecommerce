@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { Star, Heart, ArrowRight } from 'lucide-react';
@@ -8,6 +8,7 @@ import { Product, RELATED_PRODUCTS } from '../mock/mock-data';
 import { formatVND } from '../../lib/api-client';
 import { ProductImage } from '@/components/common/ProductImage';
 import { useCatalogProducts } from '@/features/catalog/hooks/useCatalog';
+import { useWishlistToggle } from '@/features/wishlist/hooks/useWishlist';
 
 interface ProductRelatedProps {
   currentProductId?: string;
@@ -21,7 +22,7 @@ export function ProductRelated({
   onSelectProduct,
 }: ProductRelatedProps) {
   const router = useRouter();
-  const [favoriteIds, setFavoriteIds] = useState<string[]>([]);
+  const { isWishlisted, toggleWishlist } = useWishlistToggle();
 
   // Tải sản phẩm liên quan thực tế từ API theo danh mục
   const { data: catalogData } = useCatalogProducts({
@@ -33,13 +34,6 @@ export function ProductRelated({
   const products = (catalogData?.data || [])
     .filter((p) => p.id !== currentProductId && p.slug !== currentProductId)
     .slice(0, 3);
-
-  const toggleFavorite = (e: React.MouseEvent, id: string) => {
-    e.stopPropagation();
-    setFavoriteIds((prev) =>
-      prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
-    );
-  };
 
   const handleProductClick = (product: any) => {
     if (onSelectProduct) {
@@ -69,7 +63,7 @@ export function ProductRelated({
       {products.length > 0 ? (
         <div className="space-y-3">
           {products.map((item) => {
-            const isFav = favoriteIds.includes(item.id);
+            const isFav = isWishlisted(item);
 
             return (
               <div
@@ -114,11 +108,11 @@ export function ProductRelated({
                 {/* Nút tim */}
                 <button
                   type="button"
-                  onClick={(e) => toggleFavorite(e, item.id)}
+                  onClick={(e) => toggleWishlist(item, e)}
                   className={`p-1.5 rounded-full hover:bg-gray-100 transition cursor-pointer shrink-0 ${
                     isFav ? 'text-rose-500' : 'text-gray-400 hover:text-gray-600'
                   }`}
-                  title="Yêu thích"
+                  title={isFav ? 'Bỏ yêu thích' : 'Thêm vào yêu thích'}
                 >
                   <Heart
                     className={`w-3.5 h-3.5 ${isFav ? 'fill-rose-500 text-rose-500' : ''}`}

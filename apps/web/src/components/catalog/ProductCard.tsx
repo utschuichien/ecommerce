@@ -6,6 +6,7 @@ import { Product } from '../mock/mock-data';
 import { formatVND } from '../../lib/api-client';
 import { ProductBadge } from './ProductBadge';
 import { ProductImage } from '@/components/common/ProductImage';
+import { useWishlistToggle } from '@/features/wishlist/hooks/useWishlist';
 
 interface ProductCardProps {
   product: Product;
@@ -13,6 +14,9 @@ interface ProductCardProps {
 }
 
 export function ProductCard({ product, onSelect }: ProductCardProps) {
+  const { isWishlisted, toggleWishlist } = useWishlistToggle();
+  const isFav = isWishlisted(product);
+
   return (
     <div
       onClick={() => onSelect?.(product)}
@@ -27,12 +31,14 @@ export function ProductCard({ product, onSelect }: ProductCardProps) {
         )}
         <button
           type="button"
-          onClick={(e) => {
-            e.stopPropagation();
-          }}
-          className="absolute top-2.5 right-2.5 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white shadow-2xs border border-gray-100 flex items-center justify-center text-gray-700 hover:text-rose-500 hover:bg-white transition z-10 cursor-pointer"
+          onClick={(e) => toggleWishlist(product, e)}
+          className={`absolute top-2.5 right-2.5 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white shadow-2xs border border-gray-100 flex items-center justify-center transition z-10 cursor-pointer ${
+            isFav ? 'text-rose-500' : 'text-gray-700 hover:text-rose-500'
+          }`}
+          title={isFav ? 'Bỏ yêu thích' : 'Thêm vào yêu thích'}
+          aria-label={isFav ? 'Bỏ yêu thích' : 'Thêm vào yêu thích'}
         >
-          <Heart className="w-3.5 h-3.5" />
+          <Heart className={`w-3.5 h-3.5 ${isFav ? 'fill-rose-500 text-rose-500' : ''}`} />
         </button>
 
         {/* Product Image */}

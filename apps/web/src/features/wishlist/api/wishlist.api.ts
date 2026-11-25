@@ -5,7 +5,9 @@ export interface WishlistItemDto {
   id: string;
   productId: string;
   productNumericId?: string;
+  slug?: string;
   name: string;
+  brand?: string;
   price: number;
   oldPrice?: number;
   discountPercent?: number;
@@ -59,5 +61,10 @@ export const wishlistApi = {
       `/wishlist/check/${productId}`,
     );
     return response.data?.data || (response.data as unknown as { isFavorite: boolean });
+  },
+
+  async getWishlistIds(): Promise<string[]> {
+    const response = await apiClient.get<ApiStandardResponse<string[]>>('/wishlist/ids');
+    return response.data?.data || (response.data as unknown as string[]) || [];
   },
 };

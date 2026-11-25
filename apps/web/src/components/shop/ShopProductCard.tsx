@@ -1,11 +1,12 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import Link from 'next/link';
 import { Heart } from 'lucide-react';
 import { ShopProduct } from './shop-types';
 import { formatVND } from '../../lib/api-client';
 import { ProductImage } from '@/components/common/ProductImage';
+import { useWishlistToggle } from '@/features/wishlist/hooks/useWishlist';
 
 interface ShopProductCardProps {
   product: ShopProduct;
@@ -13,7 +14,8 @@ interface ShopProductCardProps {
 }
 
 export function ShopProductCard({ product }: ShopProductCardProps) {
-  const [isLiked, setIsLiked] = useState(false);
+  const { isWishlisted, toggleWishlist } = useWishlistToggle();
+  const isLiked = isWishlisted(product);
 
   const discountPercent =
     product.discountPercent ||
@@ -22,9 +24,7 @@ export function ShopProductCard({ product }: ShopProductCardProps) {
       : null);
 
   const handleToggleLike = (e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setIsLiked((prev) => !prev);
+    toggleWishlist(product, e);
   };
 
   return (

@@ -8,11 +8,7 @@ import { Product } from '../mock/mock-data';
 import { CatalogProductDetail } from '@/features/catalog/types/catalog.types';
 import { formatVND, extractErrorMessage } from '../../lib/api-client';
 import { useAuthStore } from '@/features/auth/stores/useAuthStore';
-import {
-  useCheckWishlist,
-  useAddToWishlist,
-  useRemoveFromWishlist,
-} from '@/features/wishlist/hooks/useWishlist';
+import { useWishlistToggle } from '@/features/wishlist/hooks/useWishlist';
 import { useAddToCart } from '@/features/cart';
 
 interface ProductInfoProps {
@@ -33,14 +29,10 @@ export function ProductInfo({ product, onAddToCart }: ProductInfoProps) {
   const [quantity, setQuantity] = useState(1);
   const [isBuyingNow, setIsBuyingNow] = useState(false);
 
-  // Tích hợp Real API Wishlist
+  // Tích hợp Real API Wishlist đồng bộ toàn hệ thống
   const isAuthenticated = useAuthStore((s) => s.isAuthenticated);
-  const { data: isWishlisted } = useCheckWishlist(product.id);
-  const addToWishlist = useAddToWishlist();
-  const removeFromWishlist = useRemoveFromWishlist();
-  const [localWishlistState, setLocalWishlistState] = useState<boolean | null>(null);
-
-  const isFavorite = localWishlistState !== null ? localWishlistState : Boolean(isWishlisted);
+  const { isWishlisted, toggleWishlist, isLoading: isWishlistLoading } = useWishlistToggle();
+  const isFavorite = isWishlisted(product);
 
   const addToCartMutation = useAddToCart();
 
@@ -181,45 +173,8 @@ export function ProductInfo({ product, onAddToCart }: ProductInfoProps) {
   };
 
   const handleToggleWishlist = () => {
-    if (!isAuthenticated) {
-      toast.error('Vui lòng đăng nhập', {
-        description: 'Bạn cần đăng nhập để lưu sản phẩm yêu thích.',
-      });
-      return;
-    }
-
-    if (isFavorite) {
-      removeFromWishlist.mutate(product.id, {
-        onSuccess: () => {
-          setLocalWishlistState(false);
-          toast.success('Đã xóa khỏi yêu thích', {
-            description: product.name,
-          });
-        },
-        onError: (err) => {
-          toast.error('Lỗi yêu thích', {
-            description: extractErrorMessage(err, 'Không thể xóa khỏi yêu thích.'),
-          });
-        },
-      });
-    } else {
-      addToWishlist.mutate(product.id, {
-        onSuccess: () => {
-          setLocalWishlistState(true);
-          toast.success('Đã thêm vào yêu thích', {
-            description: product.name,
-          });
-        },
-        onError: (err) => {
-          toast.error('Lỗi yêu thích', {
-            description: extractErrorMessage(err, 'Không thể thêm vào yêu thích.'),
-          });
-        },
-      });
-    }
+    toggleWishlist(product);
   };
-
-  const isWishlistLoading = addToWishlist.isPending || removeFromWishlist.isPending;
 
   return (
     <div className="space-y-4 sm:space-y-4.5 flex-1">

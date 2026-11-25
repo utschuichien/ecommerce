@@ -40,6 +40,7 @@ export class WishlistService {
                 take: 1,
               },
               category: true,
+              brand: true,
             },
           },
         },
@@ -55,7 +56,9 @@ export class WishlistService {
         id: item.id.toString(),
         productId: prod.publicId,
         productNumericId: prod.id.toString(),
+        slug: prod.slug,
         name: prod.name,
+        brand: prod.brand?.name || null,
         price,
         oldPrice,
         discountPercent: null,
@@ -67,7 +70,7 @@ export class WishlistService {
         image:
           prod.images[0]?.storageKey ||
           prod.images[0]?.url ||
-          'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=300&auto=format&fit=crop&q=80',
+          '/images/defaults/default-product.svg',
         addedAt: item.createdAt,
       };
     });
@@ -249,5 +252,40 @@ export class WishlistService {
     });
 
     return { isFavorite: Boolean(item) };
+  }
+
+  /**
+   * Lấy toàn bộ danh sách ID, publicId và slug của sản phẩm mà user đã yêu thích
+   */
+  async getWishlistProductIds(publicId: string): Promise<string[]> {
+    const user = await this.prisma.user.findUnique({
+      where: { publicId },
+    });
+
+    if (!user) {
+      return [];
+    }
+
+    const items = await (this.prisma as any).wishlistItem.findMany({
+      where: { userId: user.id },
+      include: {
+        product: {
+          select: {
+            id: true,
+            publicId: true,
+            slug: true,
+          },
+        },
+      },
+    });
+
+    const idSet = new Set<string>();
+    for (const item of items) {
+      if (item.product?.publicId) idSet.add(item.product.publicId);
+      if (item.product?.id) idSet.add(item.product.id.toString());
+      if (item.product?.slug) idSet.add(item.product.slug);
+    }
+
+    return Array.from(idSet);
   }
 }
