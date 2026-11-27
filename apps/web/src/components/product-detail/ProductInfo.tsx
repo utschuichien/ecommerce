@@ -420,9 +420,9 @@ export function ProductInfo({ product, onAddToCart }: ProductInfoProps) {
       </div>
 
       {/* 7. Các cam kết dịch vụ động theo chính sách của Shop */}
-      <div className="pt-3 border-t border-gray-100 grid grid-cols-1 sm:grid-cols-3 gap-2.5 text-[11px] text-gray-500 font-normal">
+      <div className="pt-3.5 border-t border-gray-100 flex flex-wrap items-center gap-x-4 sm:gap-x-6 gap-y-2 text-[11px] sm:text-xs text-gray-600 font-normal">
         <div
-          className="flex items-center gap-1.5 min-w-0"
+          className="flex items-center gap-1.5 shrink-0"
           title={
             shop?.enableFreeShipping
               ? shop.freeShippingThreshold
@@ -432,29 +432,29 @@ export function ProductInfo({ product, onAddToCart }: ProductInfoProps) {
           }
         >
           <Truck className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-          <span className="truncate">{shippingBadge}</span>
+          <span className="whitespace-nowrap">{shippingBadge}</span>
         </div>
         <div
-          className="flex items-center gap-1.5 min-w-0"
+          className="flex items-center gap-1.5 shrink-0"
           title={
             shop?.returnPolicyNote ||
             (shop?.requireUnboxVideo ? 'Yêu cầu có video quay khi mở hộp kiện hàng' : undefined)
           }
         >
           <RotateCcw className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-          <span className="truncate">{returnBadge}</span>
+          <span className="whitespace-nowrap">{returnBadge}</span>
           {shop?.requireUnboxVideo && (
-            <span className="text-[9px] px-1 py-0.2 bg-amber-50 text-amber-700 border border-amber-200 rounded shrink-0">
+            <span className="text-[9px] px-1.5 py-0.2 bg-amber-50 text-amber-700 font-medium border border-amber-200/90 rounded shrink-0">
               Video
             </span>
           )}
         </div>
         <div
-          className="flex items-center gap-1.5 min-w-0"
+          className="flex items-center gap-1.5 shrink-0"
           title={shop?.warrantyPolicyNote || undefined}
         >
           <ShieldCheck className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-          <span className="truncate">{warrantyBadge}</span>
+          <span className="whitespace-nowrap">{warrantyBadge}</span>
         </div>
       </div>
     </div>
