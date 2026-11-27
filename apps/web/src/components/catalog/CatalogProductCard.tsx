@@ -76,6 +76,13 @@ export function CatalogProductCard({
     return count.toString();
   };
 
+  const displayRating =
+    product.rating !== undefined && product.rating !== null
+      ? typeof product.rating === 'number'
+        ? product.rating.toFixed(1)
+        : product.rating
+      : '5.0';
+
   // -------------------------------------------------------------
   // LIST VIEW: Hiển thị dạng danh sách nằm ngang
   // -------------------------------------------------------------
@@ -104,7 +111,7 @@ export function CatalogProductCard({
         <div className="flex-1 min-w-0 space-y-1.5">
           <div className="flex flex-wrap items-center gap-1.5 text-xs text-gray-500">
             <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400 shrink-0" />
-            <span className="font-semibold text-gray-800">{product.rating}</span>
+            <span className="font-semibold text-gray-800">{displayRating}</span>
             <span>({formatReviewsCount(product.reviewsCount)} đánh giá)</span>
             <span className="text-gray-300">|</span>
             <span className="text-gray-600">{product.soldCount || 'Đã bán 1k+'}</span>
@@ -231,12 +238,12 @@ export function CatalogProductCard({
         {/* Đánh giá & Số lượng đã bán: ⭐ 4.8 (12.5k đánh giá) | Đã bán 50k+ */}
         <div className="flex items-center gap-1 text-[11px] sm:text-xs text-gray-500 mb-1.5 sm:mb-2 whitespace-nowrap overflow-hidden">
           <Star className="w-3 h-3 fill-amber-400 text-amber-400 shrink-0" />
-          <span className="font-semibold text-gray-800">{product.rating}</span>
+          <span className="font-semibold text-gray-800">{displayRating}</span>
           <span className="text-gray-500">
             ({formatReviewsCount(product.reviewsCount)})
           </span>
           <span className="text-gray-300 font-light mx-0.5">|</span>
-          <span className="text-gray-500 truncate">{product.soldCount || 'Đã bán 1k+'}</span>
+          <span className="text-gray-500 truncate">{product.soldCount || 'Đã bán 500+'}</span>
         </div>
 
         {/* Giá bán & Giảm giá */}

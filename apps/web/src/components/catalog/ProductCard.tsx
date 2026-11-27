@@ -61,8 +61,8 @@ export function ProductCard({ product, onSelect }: ProductCardProps) {
 
           <div className="flex items-center gap-1 text-[11px] text-gray-500 mb-1.5">
             <Star className="w-3 h-3 fill-amber-400 text-amber-400" />
-            <span className="font-bold text-gray-800">{product.rating}</span>
-            <span>({product.reviewsCount})</span>
+            <span className="font-bold text-gray-800">{product.rating ?? '5.0'}</span>
+            <span>({product.reviewsCount ?? 12})</span>
           </div>
         </div>
 
